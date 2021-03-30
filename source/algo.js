@@ -1,7 +1,10 @@
+let computerSelection,playerSelection;
+
 function computerPlay(){
     let choices=["rock","paper","scissor"];
         return choices[(Math.floor(Math.random()*3))];
 }
+
 function battle(playerSelection,computerSelection){
     let flag=0;
     alert("AI chose "+computerSelection+" and You chose "+ playerSelection);
@@ -66,15 +69,18 @@ function battle(playerSelection,computerSelection){
     return flag;
 }
 function game(num=5){
+    console.log(num);
+    console.log(playerSelection);
     let ai=0,human=0;
     for(let i=0;i<num;i++){
         computerSelection=computerPlay();
-        playerSelection=Number(prompt("Choose your weapon. Type 1 for rock, 2 for paper and 3 for scissor"));
-        console.log(playerSelection);
-        playerSelection=["rock","paper","scissor"][playerSelection-1];
+        // playerSelection=Number(prompt("Choose your weapon. Type 1 for rock, 2 for paper and 3 for scissor"));
+        // console.log(playerSelection);
+        // playerSelection=["rock","paper","scissor"][playerSelection-1];
         let win=battle(playerSelection,computerSelection);
         if(win==1)human++;
         else if(win==-1)ai++;
+        alert("Human "+human+" and Machine "+ai);
     }
     if(human==ai){
         //tie
@@ -87,4 +93,23 @@ function game(num=5){
         //ai wins
         alert(":( ai won in a "+num+"-match series :(");
     }
+}
+const keynode=document.querySelectorAll('button');
+// console.log(keynode);
+keynode.forEach(key=>key.addEventListener('click',clickfunc));// clickfunc will
+// take only one argument and that is the event
+
+// let ngames=prompt("ENTER YOUR BATTLE STAMINA");
+// for(let i=0;i<ngames;i++){
+// 
+// }
+
+function clickfunc(e){
+    // alert(e);
+    // console.log(this);
+    // console.log(this.value);
+playerSelection=this.value;
+// console.log(typeof playerSelection);
+console.log(playerSelection);
+game(1);
 }
